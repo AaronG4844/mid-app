@@ -6,9 +6,6 @@
     <title>MID App — Closure Workflow</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet" />
     <style>
-        /* ============================================================
-               CSS VARIABLES & RESET
-               ============================================================ */
         :root {
             --bg-primary: #f6f8fc;
             --bg-card: #ffffff;
@@ -17,50 +14,30 @@
             --text-secondary: #475569;
             --text-muted: #94a3b8;
             --border: #e2e8f0;
-            --shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 4px 12px rgba(0, 0, 0, 0.04);
-            --shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.08);
+            --shadow: 0 1px 3px rgba(0,0,0,0.06);
             --radius: 12px;
             --radius-sm: 8px;
             --accent: #3b82f6;
-            --accent-hover: #2563eb;
             --success: #22c55e;
             --warning: #f59e0b;
             --danger: #ef4444;
-            --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            --transition: 0.2s ease;
+            --font: 'Inter', sans-serif;
         }
-
-        /* Dark mode */
         [data-theme="dark"] {
             --bg-primary: #0f172a;
             --bg-card: #1e293b;
-            --bg-sidebar: #0a0f1e;
             --text-primary: #f1f5f9;
             --text-secondary: #cbd5e1;
-            --text-muted: #64748b;
             --border: #334155;
-            --shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
-            --shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.5);
         }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin:0; padding:0; box-sizing:border-box; }
         body {
             font-family: var(--font);
             background: var(--bg-primary);
             color: var(--text-primary);
-            transition: background var(--transition), color var(--transition);
             display: flex;
             min-height: 100vh;
         }
-
-        /* ============================================================
-               SIDEBAR
-               ============================================================ */
         .sidebar {
             width: 220px;
             background: var(--bg-sidebar);
@@ -69,38 +46,16 @@
             display: flex;
             flex-direction: column;
             gap: 32px;
-            flex-shrink: 0;
+            height: 100vh;
             position: sticky;
             top: 0;
-            height: 100vh;
             overflow-y: auto;
-            transition: background var(--transition);
         }
-
-        .sidebar .logo {
-            font-size: 20px;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .sidebar .logo span {
-            background: var(--accent);
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-size: 12px;
-            font-weight: 600;
-        }
-
-        .sidebar nav {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-        }
-
+        .sidebar .logo { font-size:20px; font-weight:700; display:flex; align-items:center; gap:8px; }
+        .sidebar .logo span { background:var(--accent); padding:2px 8px; border-radius:4px; font-size:12px; }
+        .sidebar nav { display:flex; flex-direction:column; gap:4px; }
         .sidebar nav a {
-            color: rgba(255, 255, 255, 0.6);
+            color: rgba(255,255,255,0.6);
             text-decoration: none;
             padding: 10px 14px;
             border-radius: var(--radius-sm);
@@ -109,230 +64,68 @@
             display: flex;
             align-items: center;
             gap: 10px;
-            transition: all var(--transition);
         }
-
-        .sidebar nav a:hover {
-            background: rgba(255, 255, 255, 0.08);
-            color: white;
-        }
-
-        .sidebar nav a.active {
-            background: rgba(59, 130, 246, 0.2);
-            color: white;
-        }
-
-        .sidebar nav a .badge {
-            margin-left: auto;
-            background: var(--danger);
-            color: white;
-            font-size: 11px;
-            padding: 1px 8px;
-            border-radius: 12px;
-        }
-
-        .sidebar .footer {
-            margin-top: auto;
-            font-size: 12px;
-            color: rgba(255, 255, 255, 0.3);
-            padding-top: 16px;
-            border-top: 1px solid rgba(255, 255, 255, 0.06);
-        }
-
-        /* ============================================================
-               MAIN CONTENT
-               ============================================================ */
-        .main {
-            flex: 1;
-            padding: 32px 40px;
-            max-width: 1400px;
-            margin: 0 auto;
-            width: 100%;
-        }
-
-        /* Header */
-        .page-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 32px;
-            flex-wrap: wrap;
-            gap: 16px;
-        }
-
-        .page-header h1 {
-            font-size: 28px;
-            font-weight: 700;
-            letter-spacing: -0.02em;
-        }
-
-        .page-header p {
-            color: var(--text-secondary);
-            font-size: 15px;
-            margin-top: 4px;
-        }
-
-        .header-actions {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            align-items: center;
-        }
-
+        .sidebar nav a:hover { background:rgba(255,255,255,0.08); color:white; }
+        .sidebar nav a.active { background:rgba(59,130,246,0.2); color:white; }
+        .sidebar nav a .badge { margin-left:auto; background:var(--danger); color:white; font-size:11px; padding:1px 8px; border-radius:12px; }
+        .sidebar .footer { margin-top:auto; font-size:12px; color:rgba(255,255,255,0.3); padding-top:16px; border-top:1px solid rgba(255,255,255,0.06); }
+        .main { flex:1; padding:32px 40px; max-width:1400px; margin:0 auto; width:100%; }
+        .page-header { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:32px; flex-wrap:wrap; gap:16px; }
+        .page-header h1 { font-size:28px; font-weight:700; }
+        .page-header p { color:var(--text-secondary); font-size:15px; margin-top:4px; }
+        .header-actions { display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
         .theme-toggle {
             background: var(--bg-card);
             border: 1px solid var(--border);
             border-radius: 50%;
             width: 40px;
             height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             cursor: pointer;
             font-size: 18px;
-            transition: all var(--transition);
             color: var(--text-primary);
         }
-
-        .theme-toggle:hover {
-            transform: scale(1.05);
-            box-shadow: var(--shadow-hover);
-        }
-
-        /* ============================================================
-               STATS GRID
-               ============================================================ */
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
             gap: 16px;
             margin-bottom: 32px;
         }
-
         .stat-card {
             background: var(--bg-card);
             border-radius: var(--radius);
             padding: 20px 24px;
             border: 1px solid var(--border);
-            transition: all var(--transition);
         }
-
-        .stat-card:hover {
-            box-shadow: var(--shadow-hover);
-            transform: translateY(-2px);
-        }
-
-        .stat-card .label {
-            font-size: 13px;
-            font-weight: 500;
-            color: var(--text-secondary);
-            text-transform: uppercase;
-            letter-spacing: 0.03em;
-        }
-
-        .stat-card .value {
-            font-size: 32px;
-            font-weight: 700;
-            margin-top: 4px;
-        }
-
-        .stat-card .change {
-            font-size: 13px;
-            font-weight: 500;
-            margin-top: 4px;
-        }
-
-        .stat-card .change.up {
-            color: var(--success);
-        }
-        .stat-card .change.down {
-            color: var(--danger);
-        }
-        .stat-card .change.warning {
-            color: var(--warning);
-        }
-
-        /* ============================================================
-               CARDS
-               ============================================================ */
+        .stat-card .label { font-size:13px; font-weight:500; color:var(--text-secondary); text-transform:uppercase; letter-spacing:0.03em; }
+        .stat-card .value { font-size:32px; font-weight:700; margin-top:4px; }
+        .stat-card .change { font-size:13px; font-weight:500; margin-top:4px; }
+        .stat-card .change.warning { color:var(--warning); }
         .card {
             background: var(--bg-card);
             border-radius: var(--radius);
             border: 1px solid var(--border);
             padding: 24px;
             margin-bottom: 24px;
-            transition: background var(--transition), border var(--transition);
         }
-
-        .card-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 16px;
-            flex-wrap: wrap;
-            gap: 12px;
-        }
-
-        .card-header h2 {
-            font-size: 18px;
-            font-weight: 600;
-        }
-
-        .card-header .subtitle {
-            font-size: 14px;
-            color: var(--text-secondary);
-        }
-
-        /* ============================================================
-               FORM ELEMENTS
-               ============================================================ */
-        .form-row {
-            display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
-            align-items: flex-end;
-        }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-            flex: 1;
-            min-width: 180px;
-        }
-
-        .form-group label {
-            font-size: 13px;
-            font-weight: 500;
-            color: var(--text-secondary);
-        }
-
-        .form-group input,
-        .form-group select {
+        .card-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; flex-wrap:wrap; gap:12px; }
+        .card-header h2 { font-size:18px; font-weight:600; }
+        .form-row { display:flex; gap:12px; flex-wrap:wrap; align-items:flex-end; }
+        .form-group { display:flex; flex-direction:column; gap:4px; flex:1; min-width:180px; }
+        .form-group label { font-size:13px; font-weight:500; color:var(--text-secondary); }
+        .form-group input, .form-group select {
             padding: 10px 14px;
             border: 1px solid var(--border);
             border-radius: var(--radius-sm);
             font-size: 14px;
             background: var(--bg-primary);
             color: var(--text-primary);
-            transition: all var(--transition);
             font-family: var(--font);
         }
-
-        .form-group input:focus,
-        .form-group select:focus {
+        .form-group input:focus, .form-group select:focus {
             outline: none;
             border-color: var(--accent);
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+            box-shadow: 0 0 0 3px rgba(59,130,246,0.15);
         }
-
-        .form-group input::placeholder {
-            color: var(--text-muted);
-        }
-
-        /* ============================================================
-               BUTTONS
-               ============================================================ */
         .btn {
             padding: 10px 20px;
             border: none;
@@ -340,86 +133,29 @@
             font-size: 14px;
             font-weight: 600;
             cursor: pointer;
-            transition: all var(--transition);
             font-family: var(--font);
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            white-space: nowrap;
         }
-
-        .btn:active {
-            transform: scale(0.97);
-        }
-        .btn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-            transform: none;
-        }
-
-        .btn-primary {
-            background: var(--accent);
-            color: white;
-        }
-        .btn-primary:hover:not(:disabled) {
-            background: var(--accent-hover);
-            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
-        }
-
-        .btn-secondary {
-            background: var(--bg-primary);
-            color: var(--text-primary);
-            border: 1px solid var(--border);
-        }
-        .btn-secondary:hover:not(:disabled) {
-            background: var(--border);
-        }
-
-        .btn-success {
-            background: var(--success);
-            color: white;
-        }
-        .btn-success:hover:not(:disabled) {
-            opacity: 0.85;
-        }
-
-        .btn-danger {
-            background: var(--danger);
-            color: white;
-        }
-        .btn-danger:hover:not(:disabled) {
-            opacity: 0.85;
-        }
-
-        .btn-sm {
-            padding: 6px 14px;
-            font-size: 13px;
-        }
-
+        .btn:active { transform:scale(0.97); }
+        .btn:disabled { opacity:0.5; cursor:not-allowed; }
+        .btn-primary { background:var(--accent); color:white; }
+        .btn-primary:hover:not(:disabled) { background:#2563eb; }
+        .btn-secondary { background:var(--bg-primary); color:var(--text-primary); border:1px solid var(--border); }
+        .btn-success { background:var(--success); color:white; }
+        .btn-sm { padding:6px 14px; font-size:13px; }
         .btn .spinner {
             display: inline-block;
             width: 16px;
             height: 16px;
-            border: 2px solid rgba(255, 255, 255, 0.3);
+            border: 2px solid rgba(255,255,255,0.3);
             border-top-color: white;
             border-radius: 50%;
             animation: spin 0.6s linear infinite;
         }
-
-        @keyframes spin {
-            to {
-                transform: rotate(360deg);
-            }
-        }
-
-        /* Quick-select pills */
-        .pill-group {
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-            margin-bottom: 12px;
-        }
-
+        @keyframes spin { to { transform:rotate(360deg); } }
+        .pill-group { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:12px; }
         .pill {
             padding: 6px 16px;
             border: 1px solid var(--border);
@@ -429,134 +165,36 @@
             background: var(--bg-primary);
             color: var(--text-secondary);
             cursor: pointer;
-            transition: all var(--transition);
             font-family: var(--font);
         }
-
-        .pill:hover {
-            border-color: var(--accent);
-            color: var(--text-primary);
-        }
-
-        .pill.active {
-            background: var(--accent);
-            color: white;
-            border-color: var(--accent);
-        }
-
-        /* ============================================================
-               TABLE
-               ============================================================ */
-        .table-wrap {
-            overflow-x: auto;
-            margin-top: 4px;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 14px;
-        }
-
-        th {
-            text-align: left;
-            padding: 12px 14px;
-            font-weight: 600;
-            color: var(--text-secondary);
-            border-bottom: 2px solid var(--border);
-            font-size: 12px;
-            text-transform: uppercase;
-            letter-spacing: 0.04em;
-        }
-
-        td {
-            padding: 12px 14px;
-            border-bottom: 1px solid var(--border);
-            color: var(--text-primary);
-        }
-
-        tr:hover td {
-            background: rgba(59, 130, 246, 0.03);
-        }
-
-        .status-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-            padding: 3px 12px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 500;
-        }
-
-        .status-badge.active {
-            background: #dcfce7;
-            color: #166534;
-        }
-        .status-badge.inactive {
-            background: #fee2e2;
-            color: #991b1b;
-        }
-        .status-badge.unknown {
-            background: var(--bg-primary);
-            color: var(--text-muted);
-        }
-
-        [data-theme="dark"] .status-badge.active {
-            background: #064e3b;
-            color: #86efac;
-        }
-        [data-theme="dark"] .status-badge.inactive {
-            background: #7f1d1d;
-            color: #fca5a5;
-        }
-
-        .empty-state {
-            text-align: center;
-            padding: 48px 20px;
-            color: var(--text-secondary);
-        }
-
-        .empty-state .icon {
-            font-size: 48px;
-            margin-bottom: 12px;
-        }
-
-        .empty-state h3 {
-            font-size: 18px;
-            font-weight: 600;
-            color: var(--text-primary);
-        }
-
-        .empty-state p {
-            margin-top: 4px;
-            font-size: 14px;
-        }
-
-        /* ============================================================
-               LOG
-               ============================================================ */
+        .pill:hover { border-color:var(--accent); }
+        .pill.active { background:var(--accent); color:white; border-color:var(--accent); }
+        .table-wrap { overflow-x:auto; margin-top:4px; }
+        table { width:100%; border-collapse:collapse; font-size:14px; }
+        th { text-align:left; padding:12px 14px; font-weight:600; color:var(--text-secondary); border-bottom:2px solid var(--border); font-size:12px; text-transform:uppercase; }
+        td { padding:12px 14px; border-bottom:1px solid var(--border); }
+        tr:hover td { background:rgba(59,130,246,0.03); }
+        .status-badge { display:inline-flex; padding:3px 12px; border-radius:20px; font-size:12px; font-weight:500; }
+        .status-badge.active { background:#dcfce7; color:#166534; }
+        .status-badge.inactive { background:#fee2e2; color:#991b1b; }
+        [data-theme="dark"] .status-badge.active { background:#064e3b; color:#86efac; }
+        [data-theme="dark"] .status-badge.inactive { background:#7f1d1d; color:#fca5a5; }
+        .empty-state { text-align:center; padding:48px 20px; color:var(--text-secondary); }
+        .empty-state .icon { font-size:48px; margin-bottom:12px; }
+        .empty-state h3 { font-size:18px; font-weight:600; color:var(--text-primary); }
         .log {
             background: var(--bg-primary);
             border-radius: var(--radius-sm);
             padding: 14px 16px;
             max-height: 160px;
             overflow-y: auto;
-            font-family: 'Monaco', 'Menlo', monospace;
+            font-family: monospace;
             font-size: 13px;
             line-height: 1.6;
             color: var(--text-secondary);
             border: 1px solid var(--border);
             white-space: pre-wrap;
         }
-
-        .log .timestamp {
-            color: var(--text-muted);
-        }
-
-        /* ============================================================
-               CREDENTIALS UPLOAD
-               ============================================================ */
         .creds-area {
             display: flex;
             gap: 12px;
@@ -567,290 +205,135 @@
             border-radius: var(--radius-sm);
             border: 1px dashed var(--border);
         }
-
-        .creds-area .status {
-            font-size: 13px;
-            color: var(--text-secondary);
+        .creds-area .status { font-size:13px; }
+        .creds-area .status.success { color:var(--success); }
+        .creds-area .status.error { color:var(--danger); }
+        .file-input-wrapper { position:relative; display:inline-block; }
+        .file-input-wrapper input[type="file"] {
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
         }
-
-        .creds-area .status.success {
-            color: var(--success);
+        .file-input-wrapper .btn { pointer-events:none; }
+        @media (max-width:768px) {
+            .sidebar { display:none; }
+            .main { padding:20px; }
+            .stats-grid { grid-template-columns:1fr 1fr; }
+            .form-row { flex-direction:column; }
+            .form-group { min-width:100%; }
         }
-        .creds-area .status.error {
-            color: var(--danger);
-        }
-
-        /* ============================================================
-               SCROLLBAR
-               ============================================================ */
-        ::-webkit-scrollbar {
-            width: 6px;
-            height: 6px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: transparent;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: var(--border);
-            border-radius: 4px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--text-muted);
-        }
-
-        /* ============================================================
-               RESPONSIVE
-               ============================================================ */
-        @media (max-width: 768px) {
-            .sidebar {
-                display: none;
-            }
-
-            .main {
-                padding: 20px;
-            }
-
-            .page-header h1 {
-                font-size: 22px;
-            }
-
-            .stats-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-
-            .form-row {
-                flex-direction: column;
-            }
-
-            .form-group {
-                min-width: 100%;
-            }
-
-            .card-header {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-            .creds-area {
-                flex-direction: column;
-                align-items: stretch;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .stats-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .header-actions {
-                width: 100%;
-            }
-
-            .header-actions .btn {
-                flex: 1;
-                justify-content: center;
-            }
+        @media (max-width:480px) {
+            .stats-grid { grid-template-columns:1fr; }
         }
     </style>
 </head>
 <body>
-
-    <!-- ============================================================
-    SIDEBAR
-    ============================================================ -->
     <aside class="sidebar">
-        <div class="logo">
-            ⚡ MID
-            <span>v1</span>
-        </div>
+        <div class="logo">⚡ MID <span>v1</span></div>
         <nav>
-            <a href="#" class="active">
-                <span>📊</span> Dashboard
-            </a>
-            <a href="#">
-                <span>📋</span> Docs In Order
-                <span class="badge">12</span>
-            </a>
-            <a href="#">
-                <span>🌐</span> Domains by Corp
-            </a>
-            <a href="#">
-                <span>⚡</span> Closure Workflow
-                <span class="badge" style="background:var(--warning);">12</span>
-            </a>
-            <a href="#">
-                <span>📈</span> MID Health
-                <span style="margin-left:auto;font-size:12px;color:rgba(255,255,255,0.3);">Soon</span>
-            </a>
-            <a href="#">
-                <span>🔔</span> Alerts
-            </a>
+            <a href="#" class="active"><span>📊</span> Dashboard</a>
+            <a href="#"><span>📋</span> Docs In Order <span class="badge">12</span></a>
+            <a href="#"><span>🌐</span> Domains by Corp</a>
+            <a href="#"><span>⚡</span> Closure Workflow <span class="badge" style="background:var(--warning);">12</span></a>
+            <a href="#"><span>📈</span> MID Health <span style="margin-left:auto;font-size:12px;color:rgba(255,255,255,0.3);">Soon</span></a>
+            <a href="#"><span>🔔</span> Alerts</a>
         </nav>
-        <div class="footer">
-            MID App v1.0<br />
-            Built for Banh Mi
-        </div>
+        <div class="footer">MID App v1.0<br />Built for Banh Mi</div>
     </aside>
 
-    <!-- ============================================================
-    MAIN
-    ============================================================ -->
     <main class="main">
-
-        <!-- HEADER -->
         <div class="page-header">
             <div>
                 <h1>⚡ Closure Workflow</h1>
                 <p>Scan BA &amp; LM daily-cap sheets for underperforming MIDs (Active + Gross Sales &lt; $5,000)</p>
             </div>
             <div class="header-actions">
-                <button class="theme-toggle" id="themeToggle" title="Toggle dark mode">🌙</button>
+                <button class="theme-toggle" id="themeToggle">🌙</button>
                 <button class="btn btn-secondary btn-sm" id="refreshBtn">🔄 Refresh</button>
             </div>
         </div>
 
-        <!-- STATS -->
-        <div class="stats-grid" id="statsGrid">
-            <div class="stat-card">
-                <div class="label">Total MIDs</div>
-                <div class="value" id="statTotal">—</div>
-                <div class="change" id="statTotalChange"></div>
-            </div>
-            <div class="stat-card">
-                <div class="label">Active</div>
-                <div class="value" id="statActive">—</div>
-                <div class="change" id="statActiveChange"></div>
-            </div>
-            <div class="stat-card">
-                <div class="label">Underperforming</div>
-                <div class="value" id="statUnder">—</div>
-                <div class="change warning" id="statUnderChange">⚠️ Need review</div>
-            </div>
-            <div class="stat-card">
-                <div class="label">In Closure</div>
-                <div class="value" id="statClosure">—</div>
-                <div class="change" id="statClosureChange"></div>
-            </div>
+        <div class="stats-grid">
+            <div class="stat-card"><div class="label">Total MIDs</div><div class="value" id="statTotal">—</div></div>
+            <div class="stat-card"><div class="label">Active</div><div class="value" id="statActive">—</div></div>
+            <div class="stat-card"><div class="label">Underperforming</div><div class="value" id="statUnder">—</div><div class="change warning">⚠️ Need review</div></div>
+            <div class="stat-card"><div class="label">In Closure</div><div class="value" id="statClosure">—</div></div>
         </div>
 
-        <!-- SCAN CARD -->
         <div class="card">
             <div class="card-header">
                 <h2>🔍 Scan a Daily Cap Sheet</h2>
                 <span class="subtitle">Select a company or paste any Sheet ID</span>
             </div>
-
-            <!-- Quick Pills -->
             <div class="pill-group">
                 <button class="pill active" data-sheet="BA" data-id="1YwRMJ0NX1qA-CsdZTnX5LtCVvmENtzNkxQZX6h-JpEg">🏢 BA</button>
                 <button class="pill" data-sheet="LM" data-id="1AFeCrIZEpo1J7ncHG0K87PSQnNejspTvBLtBvXWJyMY">🏢 LM</button>
                 <button class="pill" data-sheet="custom" data-id="">📎 Custom</button>
             </div>
-
-            <!-- Form -->
             <div class="form-row">
                 <div class="form-group">
                     <label>Google Sheet ID</label>
                     <input type="text" id="sheetId" placeholder="Paste a Sheet ID or click BA/LM above" />
                 </div>
-                <div class="form-group" style="flex: 0 0 140px;">
+                <div class="form-group" style="flex:0 0 140px;">
                     <label>Company</label>
-                    <select id="companySelect">
-                        <option value="BA">BA</option>
-                        <option value="LM">LM</option>
-                        <option value="Other">Other</option>
-                    </select>
+                    <select id="companySelect"><option value="BA">BA</option><option value="LM">LM</option><option value="Other">Other</option></select>
                 </div>
-                <div class="form-group" style="flex: 0 0 auto;">
+                <div class="form-group" style="flex:0 0 auto;">
                     <label>&nbsp;</label>
                     <button class="btn btn-primary" id="scanBtn">🔍 Scan</button>
                 </div>
             </div>
-
-            <!-- Credentials -->
             <div style="margin-top:16px; padding-top:16px; border-top:1px solid var(--border);">
                 <div class="creds-area">
-                    <input type="file" id="credsFile" accept=".json" style="display:none;" />
-                    <button class="btn btn-secondary btn-sm" id="credsBtn">📂 Load Credentials</button>
+                    <div class="file-input-wrapper">
+                        <button class="btn btn-secondary btn-sm" id="credsBtn">📂 Load Credentials</button>
+                        <input type="file" id="credsFile" accept=".json" />
+                    </div>
                     <span class="status" id="credsStatus">⚠️ No credentials loaded</span>
-                    <span style="font-size:12px; color:var(--text-muted); margin-left:auto;">
-                        Service account JSON from Google Cloud
-                    </span>
+                    <span style="font-size:12px;color:var(--text-muted);margin-left:auto;">Service account JSON from Google Cloud</span>
                 </div>
             </div>
         </div>
 
-        <!-- RESULTS CARD -->
-        <div class="card" id="resultsCard">
+        <div class="card">
             <div class="card-header">
                 <h2>📋 Review List</h2>
                 <div style="display:flex; gap:8px; flex-wrap:wrap;">
                     <button class="btn btn-secondary btn-sm" id="copyBtn" disabled>📋 Copy</button>
                     <button class="btn btn-secondary btn-sm" id="csvBtn" disabled>📥 CSV</button>
-                    <button class="btn btn-success btn-sm" id="draftBtn" disabled>✏️ Draft to Sheets</button>
                 </div>
             </div>
-
             <div class="table-wrap">
                 <table>
-                    <thead>
-                        <tr>
-                            <th style="width:32px;">#</th>
-                            <th>Alias</th>
-                            <th>MID</th>
-                            <th>Corp Name</th>
-                            <th>Processor</th>
-                            <th style="text-align:right;">Gross Sales</th>
-                            <th>Status</th>
-                            <th style="max-width:120px;">Notes</th>
-                        </tr>
-                    </thead>
+                    <thead><tr><th>#</th><th>Alias</th><th>MID</th><th>Corp Name</th><th>Processor</th><th style="text-align:right;">Gross Sales</th><th>Status</th><th>Notes</th></tr></thead>
                     <tbody id="resultsBody">
-                        <tr>
-                            <td colspan="8">
-                                <div class="empty-state">
-                                    <div class="icon">🔍</div>
-                                    <h3>No scan yet</h3>
-                                    <p>Load your credentials, select a company, and click Scan.</p>
-                                </div>
-                            </td>
-                        </tr>
+                        <tr><td colspan="8"><div class="empty-state"><div class="icon">🔍</div><h3>No scan yet</h3><p>Load your credentials, select a company, and click Scan.</p></div></td></tr>
                     </tbody>
                 </table>
             </div>
         </div>
 
-        <!-- LOG CARD -->
         <div class="card">
-            <div class="card-header">
-                <h2>📝 Activity Log</h2>
-                <button class="btn btn-secondary btn-sm" id="clearLogBtn">Clear</button>
-            </div>
+            <div class="card-header"><h2>📝 Activity Log</h2><button class="btn btn-secondary btn-sm" id="clearLogBtn">Clear</button></div>
             <div class="log" id="logOutput">🚀 MID App loaded. Ready to scan.</div>
         </div>
-
     </main>
 
-    <!-- ============================================================
-    JAVASCRIPT — Full App Logic
-    ============================================================ -->
     <script>
         (function() {
             'use strict';
 
-            // ============================================================
-            // DOM REFS
-            // ============================================================
             const sheetIdInput = document.getElementById('sheetId');
             const companySelect = document.getElementById('companySelect');
             const scanBtn = document.getElementById('scanBtn');
             const resultsBody = document.getElementById('resultsBody');
             const copyBtn = document.getElementById('copyBtn');
             const csvBtn = document.getElementById('csvBtn');
-            const draftBtn = document.getElementById('draftBtn');
             const logOutput = document.getElementById('logOutput');
             const clearLogBtn = document.getElementById('clearLogBtn');
             const refreshBtn = document.getElementById('refreshBtn');
@@ -858,225 +341,231 @@
             const credsFile = document.getElementById('credsFile');
             const credsBtn = document.getElementById('credsBtn');
             const credsStatus = document.getElementById('credsStatus');
-
             const statTotal = document.getElementById('statTotal');
             const statActive = document.getElementById('statActive');
             const statUnder = document.getElementById('statUnder');
             const statClosure = document.getElementById('statClosure');
-            const statTotalChange = document.getElementById('statTotalChange');
-            const statActiveChange = document.getElementById('statActiveChange');
-            const statUnderChange = document.getElementById('statUnderChange');
-            const statClosureChange = document.getElementById('statClosureChange');
 
-            // ============================================================
-            // STATE
-            // ============================================================
             let credentials = null;
             let currentResults = [];
-            let currentCompany = 'BA';
-            let isScanning = false;
 
-            // ============================================================
-            // THEME
-            // ============================================================
-            function getTheme() {
-                return localStorage.getItem('midAppTheme') || 'light';
+            // Theme
+            function setTheme(t) {
+                document.documentElement.setAttribute('data-theme', t);
+                localStorage.setItem('midAppTheme', t);
+                themeToggle.textContent = t === 'dark' ? '☀️' : '🌙';
             }
-
-            function setTheme(theme) {
-                document.documentElement.setAttribute('data-theme', theme);
-                localStorage.setItem('midAppTheme', theme);
-                themeToggle.textContent = theme === 'dark' ? '☀️' : '🌙';
-            }
-
+            setTheme(localStorage.getItem('midAppTheme') || 'light');
             themeToggle.addEventListener('click', () => {
-                const current = getTheme();
-                setTheme(current === 'dark' ? 'light' : 'dark');
+                setTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
             });
 
-            // Init theme
-            setTheme(getTheme());
-
-            // ============================================================
-            // LOGGING
-            // ============================================================
-            function log(msg, isError = false) {
-                const now = new Date();
-                const time = now.toTimeString().slice(0, 8);
-                const prefix = isError ? '❌' : 'ℹ️';
-                const line = `[${time}] ${prefix} ${msg}`;
-                logOutput.textContent = line + '\n' + logOutput.textContent;
-                // Keep last 100 lines
-                const lines = logOutput.textContent.split('\n');
-                if (lines.length > 100) {
-                    logOutput.textContent = lines.slice(0, 100).join('\n');
+            function log(msg, err) {
+                const time = new Date().toTimeString().slice(0,8);
+                const prefix = err ? '❌' : 'ℹ️';
+                logOutput.textContent = `[${time}] ${prefix} ${msg}\n` + logOutput.textContent;
+                if (logOutput.textContent.split('\n').length > 100) {
+                    logOutput.textContent = logOutput.textContent.split('\n').slice(0,100).join('\n');
                 }
             }
 
-            clearLogBtn.addEventListener('click', () => {
-                logOutput.textContent = '';
-                log('Log cleared');
-            });
+            clearLogBtn.addEventListener('click', () => { logOutput.textContent = ''; log('Log cleared'); });
+            refreshBtn.addEventListener('click', () => { if (currentResults.length) renderResults(currentResults); });
 
-            refreshBtn.addEventListener('click', () => {
-                log('🔄 Refreshing...');
-                if (currentResults.length > 0) {
-                    renderResults(currentResults);
-                }
-            });
-
-            // ============================================================
-            // CREDENTIALS
-            // ============================================================
-            credsBtn.addEventListener('click', () => credsFile.click());
-
-            credsFile.addEventListener('change', (e) => {
-                const file = e.target.files[0];
+            // CREDENTIALS - FIXED
+            credsFile.addEventListener('change', function() {
+                const file = this.files[0];
                 if (!file) return;
-
                 const reader = new FileReader();
-                reader.onload = (ev) => {
+                reader.onload = function(e) {
                     try {
-                        const parsed = JSON.parse(ev.target.result);
-                        if (!parsed.client_email || !parsed.private_key) {
-                            throw new Error('Missing client_email or private_key');
-                        }
+                        const parsed = JSON.parse(e.target.result);
+                        if (!parsed.client_email || !parsed.private_key) throw new Error('Invalid credentials');
                         credentials = parsed;
                         credsStatus.textContent = '✅ ' + parsed.client_email;
                         credsStatus.className = 'status success';
                         log('✅ Credentials loaded: ' + parsed.client_email);
-                    } catch (err) {
+                    } catch(err) {
                         credsStatus.textContent = '❌ ' + err.message;
                         credsStatus.className = 'status error';
-                        log('❌ Failed to load credentials: ' + err.message, true);
+                        log('❌ Failed: ' + err.message, true);
                     }
                 };
                 reader.readAsText(file);
             });
 
-            // ============================================================
-            // QUICK PILLS
-            // ============================================================
-            document.querySelectorAll('.pill').forEach(pill => {
-                pill.addEventListener('click', () => {
-                    document.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
-                    pill.classList.add('active');
+            credsBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                credsFile.click();
+            });
 
-                    const sheetId = pill.dataset.id;
-                    const company = pill.dataset.sheet;
-
-                    if (sheetId && company) {
-                        sheetIdInput.value = sheetId;
-                        companySelect.value = company === 'custom' ? 'Other' : company;
-                        currentCompany = company === 'custom' ? 'Other' : company;
-                        log('📌 Selected ' + company + ' sheet');
+            // Pills
+            document.querySelectorAll('.pill').forEach(p => {
+                p.addEventListener('click', function() {
+                    document.querySelectorAll('.pill').forEach(x => x.classList.remove('active'));
+                    this.classList.add('active');
+                    if (this.dataset.id && this.dataset.sheet !== 'custom') {
+                        sheetIdInput.value = this.dataset.id;
+                        companySelect.value = this.dataset.sheet;
+                        log('Selected ' + this.dataset.sheet);
                     } else {
                         sheetIdInput.value = '';
                         sheetIdInput.placeholder = 'Paste any Sheet ID...';
-                        log('📌 Custom sheet mode — paste your Sheet ID');
                     }
                 });
             });
 
-            // ============================================================
-            // SCAN
-            // ============================================================
-            scanBtn.addEventListener('click', async () => {
+            // Scan
+            scanBtn.addEventListener('click', async function() {
                 const sheetId = sheetIdInput.value.trim();
-                if (!sheetId) {
-                    log('⚠️ Please enter a Sheet ID', true);
-                    return;
-                }
-                if (!credentials) {
-                    log('⚠️ Please load your service account credentials first', true);
-                    return;
-                }
+                if (!sheetId) { log('⚠️ Enter a Sheet ID', true); return; }
+                if (!credentials) { log('⚠️ Load credentials first', true); return; }
 
-                currentCompany = companySelect.value;
-                isScanning = true;
-                scanBtn.disabled = true;
-                scanBtn.innerHTML = '<span class="spinner"></span> Scanning...';
-
-                log('🔍 Scanning: ' + sheetId + ' (' + currentCompany + ')');
+                this.disabled = true;
+                this.innerHTML = '<span class="spinner"></span> Scanning...';
+                log('🔍 Scanning ' + sheetId);
 
                 try {
-                    const data = await fetchSheetData(sheetId);
-                    const parsed = parseSheetData(data);
-                    const filtered = filterMIDs(parsed);
+                    const token = await getAccessToken();
+                    const resp = await fetch(
+                        `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/Main`,
+                        { headers: { 'Authorization': 'Bearer ' + token } }
+                    );
+                    if (!resp.ok) throw new Error('API Error: ' + resp.status);
+                    const json = await resp.json();
+                    if (!json.values || json.values.length < 2) throw new Error('No data in "Main" tab');
+
+                    const headers = json.values[0];
+                    const results = [];
+                    for (let i = 1; i < json.values.length; i++) {
+                        const row = json.values[i];
+                        if (!row || row.length === 0) continue;
+                        const obj = {};
+                        for (let j = 0; j < headers.length; j++) obj[headers[j]] = row[j] || '';
+                        results.push(obj);
+                    }
+
+                    const filtered = results.filter(r => {
+                        const status = (r.Status || '').toLowerCase().trim();
+                        const sales = parseFloat(r['Gross Sales'] || '0');
+                        return status === 'active' && !isNaN(sales) && sales < 5000;
+                    });
+
                     currentResults = filtered;
                     renderResults(filtered);
-                    updateStats(filtered, parsed.length);
-                    log('✅ Scan complete. Found ' + filtered.length + ' underperforming MIDs.');
-                } catch (err) {
-                    log('❌ Error: ' + err.message, true);
-                    console.error(err);
-                    renderError(err.message);
+                    updateStats(filtered, results.length);
+                    log('✅ Found ' + filtered.length + ' underperforming MIDs');
+                } catch(err) {
+                    log('❌ ' + err.message, true);
                 } finally {
-                    isScanning = false;
-                    scanBtn.disabled = false;
-                    scanBtn.innerHTML = '🔍 Scan';
+                    this.disabled = false;
+                    this.innerHTML = '🔍 Scan';
                 }
             });
 
-            // ============================================================
-            // GOOGLE SHEETS API
-            // ============================================================
-            async function fetchSheetData(sheetId) {
-                const token = await getAccessToken();
-
-                const url =
-                    `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/Main?majorDimension=ROWS`;
-                const response = await fetch(url, {
-                    headers: {
-                        'Authorization': 'Bearer ' + token,
-                        'Content-Type': 'application/json',
-                    }
-                });
-
-                if (!response.ok) {
-                    const errText = await response.text();
-                    let msg = 'API Error ' + response.status;
-                    try {
-                        const errJson = JSON.parse(errText);
-                        msg += ': ' + (errJson.error?.message || errText);
-                    } catch {
-                        msg += ': ' + errText;
-                    }
-                    throw new Error(msg);
-                }
-
-                const json = await response.json();
-                if (!json.values || json.values.length === 0) {
-                    throw new Error('No data found in "Main" tab.');
-                }
-
-                return json.values;
-            }
-
             async function getAccessToken() {
-                const header = { alg: 'RS256', typ: 'JWT' };
-                const now = Math.floor(Date.now() / 1000);
+                const header = { alg:'RS256', typ:'JWT' };
+                const now = Math.floor(Date.now()/1000);
                 const payload = {
                     iss: credentials.client_email,
                     sub: credentials.client_email,
                     scope: 'https://www.googleapis.com/auth/spreadsheets.readonly',
                     aud: 'https://oauth2.googleapis.com/token',
                     exp: now + 3600,
-                    iat: now,
+                    iat: now
                 };
+                const b64 = (o) => btoa(JSON.stringify(o)).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
+                const toSign = b64(header) + '.' + b64(payload);
 
-                const headerB64 = btoa(JSON.stringify(header))
-                    .replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
-                const payloadB64 = btoa(JSON.stringify(payload))
-                    .replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
-                const toSign = headerB64 + '.' + payloadB64;
-
-                const key = await importPrivateKey(credentials.private_key);
-                const sig = await crypto.subtle.sign(
-                    { name: 'RSASSA-PKCS1-v1_5' },
-                    key,
-                    new TextEncoder().encode(toSign)
+                const key = await crypto.subtle.importKey(
+                    'pkcs8',
+                    Uint8Array.from(atob(credentials.private_key.replace(/-----BEGIN [A-Z ]+-----|-----END [A-Z ]+-----|\s/g,'')), c=>c.charCodeAt(0)).buffer,
+                    { name:'RSASSA-PKCS1-v1_5', hash:'SHA-256' },
+                    false,
+                    ['sign']
                 );
-                const sigB64 = btoa(String.fromCharCode(...new Uint8Array(sig)))
-                    .replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
-                const jwt = to
+                const sig = await crypto.subtle.sign({ name:'RSASSA-PKCS1-v1_5' }, key, new TextEncoder().encode(toSign));
+                const sigB64 = btoa(String.fromCharCode(...new Uint8Array(sig))).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
+                const jwt = toSign + '.' + sigB64;
+
+                const resp = await fetch('https://oauth2.googleapis.com/token', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: 'grant_type=urn:ietf:params:oauth:grant-type:jwt-bearer&assertion=' + jwt
+                });
+                if (!resp.ok) throw new Error('Token exchange failed');
+                const data = await resp.json();
+                return data.access_token;
+            }
+
+            function renderResults(results) {
+                const tbody = resultsBody;
+                if (results.length === 0) {
+                    tbody.innerHTML = `<tr><td colspan="8"><div class="empty-state"><div class="icon">✅</div><h3>No underperforming MIDs</h3><p>All active MIDs have Gross Sales ≥ $5,000</p></div></td></tr>`;
+                    copyBtn.disabled = true;
+                    csvBtn.disabled = true;
+                    return;
+                }
+                copyBtn.disabled = false;
+                csvBtn.disabled = false;
+                let html = '';
+                results.forEach((r, i) => {
+                    const statusClass = (r.Status || '').toLowerCase() === 'active' ? 'active' : 'inactive';
+                    html += `<tr>
+                        <td>${i+1}</td>
+                        <td>${r.Alias || ''}</td>
+                        <td>${r.MID || ''}</td>
+                        <td>${r['Corp Name'] || ''}</td>
+                        <td>${r.Processor || ''}</td>
+                        <td style="text-align:right;">$${parseFloat(r['Gross Sales'] || 0).toFixed(2)}</td>
+                        <td><span class="status-badge ${statusClass}">${r.Status || 'Unknown'}</span></td>
+                        <td>${(r.Notes || '').substring(0,30)}</td>
+                    </tr>`;
+                });
+                tbody.innerHTML = html;
+            }
+
+            function updateStats(results, total) {
+                statTotal.textContent = total || '—';
+                statActive.textContent = results.length || '—';
+                statUnder.textContent = results.length || '—';
+                statClosure.textContent = '—';
+            }
+
+            copyBtn.addEventListener('click', () => {
+                if (!currentResults.length) return;
+                let text = 'Alias\tMID\tCorp Name\tProcessor\tGross Sales\tStatus\tNotes\n';
+                currentResults.forEach(r => {
+                    text += `${r.Alias||''}\t${r.MID||''}\t${r['Corp Name']||''}\t${r.Processor||''}\t${r['Gross Sales']||0}\t${r.Status||''}\t${r.Notes||''}\n`;
+                });
+                navigator.clipboard?.writeText(text).then(() => log('📋 Copied ' + currentResults.length + ' rows')).catch(() => {
+                    const ta = document.createElement('textarea');
+                    ta.value = text;
+                    document.body.appendChild(ta);
+                    ta.select();
+                    document.execCommand('copy');
+                    ta.remove();
+                    log('📋 Copied ' + currentResults.length + ' rows');
+                });
+            });
+
+            csvBtn.addEventListener('click', () => {
+                if (!currentResults.length) return;
+                let csv = 'Alias,MID,Corp Name,Processor,Gross Sales,Status,Notes\n';
+                currentResults.forEach(r => {
+                    csv += `"${r.Alias||''}","${r.MID||''}","${r['Corp Name']||''}","${r.Processor||''}",${r['Gross Sales']||0},"${r.Status||''}","${r.Notes||''}"\n`;
+                });
+                const blob = new Blob([csv], { type:'text/csv' });
+                const a = document.createElement('a');
+                a.href = URL.createObjectURL(blob);
+                a.download = `underperforming_mids_${new Date().toISOString().slice(0,10)}.csv`;
+                a.click();
+                URL.revokeObjectURL(a.href);
+                log('📥 Downloaded CSV');
+            });
+
+            log('🚀 Ready');
+        })();
+    </script>
+</body>
+</html>
